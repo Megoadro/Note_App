@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomIcomAction extends StatelessWidget {
-  const CustomIcomAction({super.key});
+class CustomIconAction extends StatelessWidget {
+  const CustomIconAction({super.key});
 
   @override
   Widget build(BuildContext context) {
