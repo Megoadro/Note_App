@@ -14,7 +14,7 @@ class CustomEditViewBody extends StatelessWidget {
           children: [
             
             SizedBox(height: 50,),
-            CustomAppBar(titleAppBar: 'Edit Note',),
+            CustomAppBar(titleAppBar: 'Edit Note',icon:  Icons.done,),
           ],
         ),
       ) ,
