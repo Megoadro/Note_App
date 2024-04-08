@@ -2,30 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:note_app/helper/contstan.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hintText,  this.maxLine=1});
-   final String hintText;
-   final int maxLine;
+  const CustomTextField(
+      {super.key, required this.hintText, this.maxLine = 1, this.onSaved});
+  final String hintText;
+  final int maxLine;
+  final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      cursorColor:kPrimaryColor ,
+    return TextFormField(
+      validator: (value) {
+        if (value?.isEmpty ?? true) {
+          return 'field is requiard';
+        } else {
+          return null;
+        }
+      },
+      onSaved: onSaved,
+      cursorColor: kPrimaryColor,
       maxLines: maxLine,
-      decoration:InputDecoration(
+      decoration: InputDecoration(
         hintText: hintText,
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(kPrimaryColor),
-        
       ),
     );
   }
 
   OutlineInputBorder buildBorder([color]) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(18),
-        borderSide: BorderSide(
-          color: color ?? Colors.white,
-        ),
-      );
+      borderRadius: BorderRadius.circular(18),
+      borderSide: BorderSide(
+        color: color ?? Colors.white,
+      ),
+    );
   }
 }
