@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/add_note_cubit/cubit/add_note_cubit.dart';
 import 'package:note_app/widgets/add_note_form.dart';
@@ -22,8 +23,11 @@ class NoteModalBottomSheet extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return const SingleChildScrollView(
-              child: AddNoteForm(),
+            return const AbsorbPointer(
+              absorbing: State is AddNoteLoading ? true : false,
+              child: SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
             );
           },
         ),

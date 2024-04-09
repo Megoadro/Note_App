@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:note_app/helper/contstan.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.title, this.onTap});
+  const CustomButton(
+      {super.key, required this.title, this.onTap, this.isLoading = false});
+  final isLoading;
   final String title;
   final void Function()? onTap;
   @override
@@ -18,14 +20,22 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Center(
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          child: isLoading
+              ? const SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                )
+              : Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         ),
       ),
     );
