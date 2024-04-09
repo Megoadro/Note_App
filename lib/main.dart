@@ -7,24 +7,25 @@ import 'package:note_app/models/note_model.dart';
 import 'package:note_app/simble_block_observer.dart';
 import 'package:note_app/views/home_view.dart';
 
-void main () async{
-  Bloc.observer=SimbleBlocObserver();
+void main() async {
+  Bloc.observer = SimbleBlocObserver();
   await Hive.initFlutter();
-  await Hive.openBox<NoteModel>(kNotesBox);
   Hive.registerAdapter(NoteModelAdapter());
+
+  await Hive.openBox<NoteModel>(kNotesBox);
   runApp(NoteApp());
 }
+
 class NoteApp extends StatelessWidget {
   const NoteApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  MultiBlocProvider(
+    return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=> AddNoteCubit()),
+        BlocProvider(create: (context) => AddNoteCubit()),
       ],
       child: MaterialApp(
-      
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           brightness: Brightness.dark,
