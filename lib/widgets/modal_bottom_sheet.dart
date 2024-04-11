@@ -25,7 +25,7 @@ class NoteModalBottomSheet extends StatelessWidget {
           },
           builder: (context, state) {
             return AbsorbPointer(
-              absorbing: State is AddNoteLoading ? true : false,
+              absorbing: state is AddNoteLoading ? true : false,
               child: Padding(
                 padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom,
