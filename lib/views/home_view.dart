@@ -4,7 +4,6 @@ import 'package:note_app/widgets/modal_bottom_sheet.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

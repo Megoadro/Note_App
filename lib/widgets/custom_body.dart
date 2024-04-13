@@ -28,7 +28,7 @@ class _CustomBodyState extends State<CustomBody> {
             height: 50,
           ),
           CustomAppBar(titleAppBar: 'Notes', icon:  Icons.search,),
-          Expanded(child: NotesListView()),
+          Expanded(child:   NotesListView()),
         ],
       ),
     );
