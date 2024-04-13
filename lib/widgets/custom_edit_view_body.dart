@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/read_note_cubit/read_notes_cubit.dart';
+import 'package:note_app/helper/show_snak_bar.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/widgets/custom_app_bar.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
@@ -33,6 +34,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
                 widget.note.save();
                 Navigator.pop(context);
                 BlocProvider.of<ReadNotesCubit>(context).fetchAllNotes();
+                SnakkBar(context, 'Note Edited !');
               },
               titleAppBar: 'Edit Note',
               icon: Icons.done,
@@ -59,7 +61,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
             const SizedBox(
               height: 32,
             ),
-             EditNoteColorList(
+            EditNoteColorList(
               note: widget.note,
             ),
           ],

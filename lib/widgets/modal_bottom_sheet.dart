@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app/cubits/add_note_cubit/cubit/add_note_cubit.dart';
 import 'package:note_app/cubits/read_note_cubit/read_notes_cubit.dart';
+import 'package:note_app/helper/show_snak_bar.dart';
 import 'package:note_app/widgets/add_note_form.dart';
 
 class NoteModalBottomSheet extends StatelessWidget {
@@ -23,6 +24,7 @@ class NoteModalBottomSheet extends StatelessWidget {
             if (state is AddNoteSuccess) {
               BlocProvider.of<ReadNotesCubit>(context).fetchAllNotes();
               Navigator.pop(context);
+              SnakkBar(context, 'Note Adeed !');
 
             }
           },

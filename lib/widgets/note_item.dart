@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:note_app/cubits/read_note_cubit/read_notes_cubit.dart';
+import 'package:note_app/helper/show_snak_bar.dart';
 import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/edit_note_view.dart';
 
@@ -13,7 +14,7 @@ class NoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  EditNoteView(
+          return EditNoteView(
             note: note,
           );
         }));
@@ -55,8 +56,8 @@ class NoteItem extends StatelessWidget {
                 icon: IconButton(
                   onPressed: () {
                     note.delete();
-
                     BlocProvider.of<ReadNotesCubit>(context).fetchAllNotes();
+                    SnakkBar(context, 'Note deleted !');
                   },
                   icon: const Icon(
                     FontAwesomeIcons.trash,
