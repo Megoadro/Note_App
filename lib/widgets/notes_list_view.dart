@@ -12,7 +12,6 @@ class NotesListView extends StatelessWidget {
       builder: (context, state) {
         List<NoteModel> notesList =
             BlocProvider.of<ReadNotesCubit>(context).notes!;
-
         if (notesList.isEmpty) {
           return Image.asset('assets/images/alert.png');
         } else {

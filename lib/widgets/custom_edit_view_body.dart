@@ -18,6 +18,12 @@ class CustomEditViewBody extends StatefulWidget {
 class _CustomEditViewBodyState extends State<CustomEditViewBody> {
   String? title, content;
   @override
+  void initState() {
+    title = widget.note.title;
+    content = widget.note.subTitle;
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -43,6 +49,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
               height: 32,
             ),
             CustomTextField(
+              initialValue:  title,
               onChanged: (value) {
                 title = value;
               },
@@ -52,6 +59,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
               height: 32,
             ),
             CustomTextField(
+              initialValue: content,
               onChanged: (value) {
                 content = value;
               },
