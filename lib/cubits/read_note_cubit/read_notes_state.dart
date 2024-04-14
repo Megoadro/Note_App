@@ -5,5 +5,8 @@ sealed class ReadNotesState {}
 
 final class ReadNotesInitial extends ReadNotesState {}
 final class ReadNotesSuccess extends ReadNotesState {}
+final class ReadNotesDoneState extends ReadNotesState {}
+
+
 
 

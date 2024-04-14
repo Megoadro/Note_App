@@ -14,4 +14,8 @@ class ReadNotesCubit extends Cubit<ReadNotesState> {
     notes = notesBox.values.toList();
     emit(ReadNotesSuccess());
   }
+
+  emitDone(){
+    emit(ReadNotesDoneState());
+  }
 }

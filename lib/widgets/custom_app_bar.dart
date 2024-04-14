@@ -7,7 +7,9 @@ class CustomAppBar extends StatelessWidget {
     required this.titleAppBar,
     required this.icon,
     this.onPressed,
+    this.canPressed = false,
   });
+  final bool canPressed;
   final String titleAppBar;
   final IconData icon;
   final void Function()? onPressed;
@@ -20,6 +22,7 @@ class CustomAppBar extends StatelessWidget {
           style: const TextStyle(fontSize: 30),
         ),
         const Spacer(),
+        if(canPressed)
         CustomIconAction(
           onPressed: onPressed,
           actionIcon: icon,

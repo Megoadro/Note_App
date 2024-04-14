@@ -17,12 +17,15 @@ class CustomEditViewBody extends StatefulWidget {
 
 class _CustomEditViewBodyState extends State<CustomEditViewBody> {
   String? title, content;
+  int? color;
   @override
   void initState() {
     title = widget.note.title;
     content = widget.note.subTitle;
+    color = widget.note.color;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,25 +36,33 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
             const SizedBox(
               height: 50,
             ),
-            CustomAppBar(
-              onPressed: () {
-                widget.note.title = title ?? widget.note.title;
-                widget.note.subTitle = content ?? widget.note.subTitle;
-                widget.note.save();
-                Navigator.pop(context);
-                BlocProvider.of<ReadNotesCubit>(context).fetchAllNotes();
-                SnakkBar(context, 'Note Edited !');
+            BlocBuilder<ReadNotesCubit, ReadNotesState>(
+              builder: (context, state) {
+                return CustomAppBar(
+                  canPressed: title != widget.note.title ||
+                      content != widget.note.subTitle ||
+                      color != widget.note.color,
+                  onPressed: () {
+                    widget.note.title = title ?? widget.note.title;
+                    widget.note.subTitle = content ?? widget.note.subTitle;
+                    widget.note.save();
+                    Navigator.pop(context);
+                    BlocProvider.of<ReadNotesCubit>(context).fetchAllNotes();
+                    SnakkBar(context, 'Note Edited !');
+                  },
+                  titleAppBar: 'Edit Note',
+                  icon: Icons.done,
+                );
               },
-              titleAppBar: 'Edit Note',
-              icon: Icons.done,
             ),
             const SizedBox(
               height: 32,
             ),
             CustomTextField(
-              initialValue:  title,
+              initialValue: title,
               onChanged: (value) {
                 title = value;
+                BlocProvider.of<ReadNotesCubit>(context).emitDone();
               },
               hintText: widget.note.title,
             ),
@@ -62,6 +73,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
               initialValue: content,
               onChanged: (value) {
                 content = value;
+                BlocProvider.of<ReadNotesCubit>(context).emitDone();
               },
               hintText: widget.note.subTitle,
               maxLine: 5,
@@ -70,6 +82,7 @@ class _CustomEditViewBodyState extends State<CustomEditViewBody> {
               height: 32,
             ),
             EditNoteColorList(
+              
               note: widget.note,
             ),
           ],
